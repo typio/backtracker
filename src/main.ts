@@ -1,3 +1,4 @@
+import './utils/helpers.ts'
 import { mount } from 'svelte'
 import './app.css'
 import App from './App.svelte'

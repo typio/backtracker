@@ -11,6 +11,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --primary: rgba(255, 255, 255, 0.87); 
+  --background: #242424;
+  --background2: #1a1a1a;
+  --destructive: red;
 }
 
 a {
@@ -18,9 +23,11 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
+
 
 body {
   margin: 0;
@@ -30,19 +37,39 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
+header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  height: 6rem;
+  width: 100%;
+  padding: 0 2rem;
+  top: 0;
+  left: 0;
+  background: var(--background2); 
+}
+
+header .sidebar-button {
+  font-size: 3rem;
+  line-height: 0;
+  padding: 0;
+  background: none;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.6em;
   line-height: 1.1;
 }
 
 .card {
-margin: 8rem 0 0 0;
+  margin: 4rem 0;
 }
 
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 8rem 2rem 2rem 2rem;
   text-align: center;
 }
 
@@ -65,12 +92,44 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+button.active {
+  background-color: lightblue;
+  color: #1a1a1a;
+}
+
+button.button-inline {
+  white-space: pre;
+  color: lightskyblue;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+button.button-inline:hover {
+  color: white;
+}
+
+button.button-inline:focus {
+  color: white;
+  outline: none
+}
+
+.file-drop-zone {
+  background: #1a1a1a;
+  border-radius: 1rem;
+  padding: 1rem 1rem 4rem 1rem;
+  display: flex;
 }
 
 @media (prefers-color-scheme: light) {
@@ -78,9 +137,11 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }

@@ -1,30 +1,41 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import Chart from './lib/Chart.svelte'
+  import { Toaster } from "svelte-french-toast";
+  import Header from "./components/Header.svelte";
+  import LoadCsvPopover from "./components/LoadCSVPopover.svelte";
+  import FileUploader from "./components/FileUploader.svelte";
+  import Chart from "./components/Chart.svelte";
+  import DatasetList from "./components/DatasetList.svelte";
+  import { GraphData } from "./stores/graphData.svelte";
+
+  let graphData = new GraphData();
+  let loadCSVPopover = $state({
+    rawCSV: undefined,
+    fieldMapping: undefined,
+  });
 </script>
 
 <main>
-  <h1>Backtracker</h1>
+  <Header />
+  <div class='main'>
+    <DatasetList series={graphData.series} onRemove={(i: number) => {
+       graphData.series.splice(i, 1)
+    }} />
 
-  <div class="card">
-    <Chart />
+    <div>
+      <Chart {graphData} graphSize={{ w: 16, h: 9 }} />
+
+      <div class="chart-controls">
+        <FileUploader bind:loadCSVPopover {graphData} />
+        <LoadCsvPopover bind:loadCSVPopover {graphData} />
+      </div>
+    </div>
   </div>
+
+  <Toaster />
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
+  .main {
+    display: flex;
   }
 </style>
