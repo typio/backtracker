@@ -1,15 +1,22 @@
 <script lang="ts">
-  import { DataType, loadCSV, parseCSV } from "../utils/csv";
+  import { DataType, parseCSV } from '../utils/csv'
 
-  let { graphData, loadCSVPopover = $bindable() }: any = $props();
+  let { graphData, loadCSVPopover = $bindable() }: any = $props()
 </script>
 
 <div id="load-csv" popover>
+  <input
+    type="color"
+    value={loadCSVPopover.color}
+    oninput={({ target }) =>
+      (loadCSVPopover.color = (target as HTMLInputElement).value)}
+  />
+
   <button
     class="button-inline"
     aria-label="cancel-loading"
     onclick={() => {
-      document.getElementById("load-csv")?.hidePopover();
+      document.getElementById('load-csv')?.hidePopover()
     }}
   >
     <div
@@ -26,7 +33,7 @@
 
   {#each loadCSVPopover.rawCSV?.fieldNames ?? [] as fieldName, i}
     <div>
-      {#if (fieldName ?? "") === ""}
+      {#if (fieldName ?? '') === ''}
         Column {i}
       {:else}
         {fieldName.toTitleCase()}
@@ -36,7 +43,7 @@
         <select bind:value={loadCSVPopover.fieldMapping[fieldName]}>
           {#each [...Object.values(DataType), null] as value}
             <option {value}>
-              {value === null ? "Ignored" : value.toTitleCase()}
+              {value === null ? 'Ignored' : value.toTitleCase()}
             </option>
           {/each}
         </select>
@@ -52,14 +59,14 @@
     onclick={() => {
       let parseResult = parseCSV(
         loadCSVPopover.rawCSV,
-        loadCSVPopover.fieldMapping,
-      );
+        loadCSVPopover.fieldMapping
+      )
 
-      if (parseResult.error !== undefined) {
-        loadCSVPopover.error = parseResult.error;
+      if ('error' in parseResult) {
+        loadCSVPopover.error = parseResult.error
       } else {
-        graphData.series.push(parseResult);
-        document.getElementById("load-csv")?.hidePopover();
+        graphData.series.push({ ...parseResult, color: loadCSVPopover.color })
+        document.getElementById('load-csv')?.hidePopover()
       }
     }}
   >

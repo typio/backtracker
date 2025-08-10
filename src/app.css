@@ -12,10 +12,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --primary: rgba(255, 255, 255, 0.87); 
+  --primary: rgba(255, 255, 255, 0.87);
   --background: #242424;
   --background2: #1a1a1a;
+  --background3: #070707;
   --destructive: red;
+}
+
+.chart-svg {
+  overflow: visible;
+  padding: 0 0 2rem 4rem;
+
+  font-family: Inter, Roboto, Arial, sans-serif;
 }
 
 a {
@@ -28,57 +36,8 @@ a:hover {
   color: #535bf2;
 }
 
-
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-header {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  height: 6rem;
-  width: 100%;
-  padding: 0 2rem;
-  top: 0;
-  left: 0;
-  background: var(--background2); 
-}
-
-header .sidebar-button {
-  font-size: 3rem;
-  line-height: 0;
-  padding: 0;
-  background: none;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2.6em;
-  line-height: 1.1;
-}
-
-.card {
-  margin: 4rem 0;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 8rem 2rem 2rem 2rem;
-  text-align: center;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  flex: 1;
+  margin: 0
 }
 
 button {
