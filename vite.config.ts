@@ -7,6 +7,8 @@ export default defineConfig({
   plugins: [svelte()],
 
   server: {
-    port: 8080
-  }
+    port: 8080,
+  },
 })
+
+console.log('VITE_BASE:', process.env.VITE_BASE)
